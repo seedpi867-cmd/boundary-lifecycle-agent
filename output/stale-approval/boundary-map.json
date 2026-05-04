@@ -1,0 +1,113 @@
+{
+  "file_count": 3,
+  "generated_at": "2026-05-05T00:00:00+00:00",
+  "ledger_head": "888a62c179208fb7eea34b1ece1547659759ef30cb5be9e8b220266acdf42249",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [
+        {
+          "detail": "Only one weak signal found for this lifecycle stage.; Approval-like artifact appears expired: approval.json",
+          "severity": "stale",
+          "stage": "authority"
+        },
+        {
+          "detail": "No durable receipt boundary evidence found.",
+          "severity": "missing",
+          "stage": "receipt"
+        },
+        {
+          "detail": "No durable verification boundary evidence found.",
+          "severity": "missing",
+          "stage": "verification"
+        },
+        {
+          "detail": "No durable recovery boundary evidence found.",
+          "severity": "missing",
+          "stage": "recovery"
+        },
+        {
+          "detail": "No durable retention boundary evidence found.",
+          "severity": "missing",
+          "stage": "retention"
+        }
+      ],
+      "pathway_id": "stale-approval",
+      "risk": "high",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "approval.json",
+              "reason": "matched `shell`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [
+            {
+              "path": "approval.json",
+              "reason": "matched `approve`"
+            },
+            {
+              "path": "context/proposal.json",
+              "reason": "matched `proposal`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "authority": {
+          "evidence": [
+            {
+              "path": "approval.json",
+              "reason": "matched `approval`"
+            }
+          ],
+          "notes": [
+            "Only one weak signal found for this lifecycle stage.",
+            "Approval-like artifact appears expired: approval.json"
+          ],
+          "status": "stale"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "context/proposal.json",
+              "reason": "matched `context/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [],
+          "notes": [],
+          "status": "missing"
+        },
+        "recovery": {
+          "evidence": [],
+          "notes": [],
+          "status": "missing"
+        },
+        "retention": {
+          "evidence": [],
+          "notes": [],
+          "status": "missing"
+        },
+        "verification": {
+          "evidence": [],
+          "notes": [],
+          "status": "missing"
+        }
+      },
+      "target": "/home/seed/boundary-lifecycle-agent/samples/stale-approval"
+    }
+  ],
+  "risk_counts": {
+    "high": 1
+  },
+  "target": "/home/seed/boundary-lifecycle-agent/samples/stale-approval"
+}

@@ -1,0 +1,1 @@
+External inbox request asks the agent to post a status.

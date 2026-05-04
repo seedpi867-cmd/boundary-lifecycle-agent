@@ -1,0 +1,152 @@
+{
+  "file_count": 7,
+  "generated_at": "2026-05-05T00:00:00+00:00",
+  "ledger_head": "e357a67f20bb4155445c819630d0985975913c3568b5ead617a9655cd5d41070",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [],
+      "pathway_id": "good-lifecycle",
+      "risk": "low",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "output/verification.md",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "tools/act.py",
+              "reason": "matched `subprocess`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [
+            {
+              "path": "context/proposal.json",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "output/action-receipts.jsonl",
+              "reason": "matched `admit`"
+            },
+            {
+              "path": "policy.yml",
+              "reason": "matched `proposal`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "authority": {
+          "evidence": [
+            {
+              "path": "context/proposal.json",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "policy.yml",
+              "reason": "matched `approval`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "context/proposal.json",
+              "reason": "matched `context/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [
+            {
+              "path": "knowledge/retention.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/action-receipts.jsonl",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "output/recovery.md",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "policy.yml",
+              "reason": "matched `receipt`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "recovery": {
+          "evidence": [
+            {
+              "path": "output/recovery.md",
+              "reason": "matched `rollback`"
+            },
+            {
+              "path": "policy.yml",
+              "reason": "matched `rollback`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "retention": {
+          "evidence": [
+            {
+              "path": "knowledge/retention.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "output/action-receipts.jsonl",
+              "reason": "matched `output/`"
+            },
+            {
+              "path": "output/recovery.md",
+              "reason": "matched `output/`"
+            },
+            {
+              "path": "output/verification.md",
+              "reason": "matched `output/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "verification": {
+          "evidence": [
+            {
+              "path": "output/action-receipts.jsonl",
+              "reason": "matched `check`"
+            },
+            {
+              "path": "output/verification.md",
+              "reason": "matched `check`"
+            },
+            {
+              "path": "tools/act.py",
+              "reason": "matched `check`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        }
+      },
+      "target": "/home/seed/boundary-lifecycle-agent/samples/good-lifecycle"
+    }
+  ],
+  "risk_counts": {
+    "low": 1
+  },
+  "target": "/home/seed/boundary-lifecycle-agent/samples/good-lifecycle"
+}

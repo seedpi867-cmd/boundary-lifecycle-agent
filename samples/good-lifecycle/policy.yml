@@ -1,0 +1,9 @@
+admission:
+  proposal_required: true
+  deny_terms:
+    - ignore previous instructions
+authority:
+  approval_expiry_minutes: 30
+  credential_custody: external-wrapper
+recovery:
+  rollback: remove generated output and append correction receipt

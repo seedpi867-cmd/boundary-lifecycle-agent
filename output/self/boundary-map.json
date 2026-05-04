@@ -1,0 +1,333 @@
+{
+  "file_count": 43,
+  "generated_at": "2026-05-05T00:00:00+00:00",
+  "ledger_head": "cd1b3901a4cfd3936b332fd8581fc591a3b270533d8ac9d549018df2cec0849a",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [
+        {
+          "detail": "Approval-like artifact appears expired: samples/stale-approval/approval.json; Credential-like value appears inside ordinary repo text: samples/collapsed-credential/tools/post.py",
+          "severity": "collapsed",
+          "stage": "authority"
+        }
+      ],
+      "pathway_id": "boundary-lifecycle-agent",
+      "risk": "critical",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `requests.`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "output/collapsed-credential/boundary-map.json",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "output/collapsed-credential/gaps.md",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "output/good/boundary-map.json",
+              "reason": "matched `subprocess`"
+            },
+            {
+              "path": "output/missing-verification/boundary-map.json",
+              "reason": "matched `curl`"
+            },
+            {
+              "path": "output/stale-approval/boundary-map.json",
+              "reason": "matched `shell`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [
+            {
+              "path": "README.md",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "output/good/boundary-map.json",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "output/missing-verification/boundary-map.json",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "output/stale-approval/boundary-map.json",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "samples/good-lifecycle/context/proposal.json",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "samples/good-lifecycle/output/action-receipts.jsonl",
+              "reason": "matched `admit`"
+            },
+            {
+              "path": "samples/good-lifecycle/policy.yml",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "samples/missing-verification/policy.md",
+              "reason": "matched `policy`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "authority": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `authority`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `authority`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "output/collapsed-credential/boundary-docket.md",
+              "reason": "matched `authority`"
+            },
+            {
+              "path": "output/collapsed-credential/boundary-map.json",
+              "reason": "matched `authority`"
+            },
+            {
+              "path": "output/collapsed-credential/gaps.md",
+              "reason": "matched `authority`"
+            }
+          ],
+          "notes": [
+            "Approval-like artifact appears expired: samples/stale-approval/approval.json",
+            "Credential-like value appears inside ordinary repo text: samples/collapsed-credential/tools/post.py"
+          ],
+          "status": "collapsed"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "output/collapsed-credential/boundary-map.json",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "output/good/boundary-map.json",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "output/missing-verification/boundary-map.json",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "output/stale-approval/boundary-map.json",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "samples/collapsed-credential/context/input.txt",
+              "reason": "matched `context/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `docket`"
+            },
+            {
+              "path": "output/collapsed-credential/boundary-docket.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/collapsed-credential/boundary-map.json",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/collapsed-credential/lifecycle-ledger.jsonl",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/good/boundary-docket.md",
+              "reason": "matched `ledger`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "recovery": {
+          "evidence": [
+            {
+              "path": "README.md",
+              "reason": "matched `rollback`"
+            },
+            {
+              "path": "output/collapsed-credential/boundary-docket.md",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "output/collapsed-credential/boundary-map.json",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "output/collapsed-credential/gaps.md",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "output/good/boundary-map.json",
+              "reason": "matched `rollback`"
+            },
+            {
+              "path": "output/missing-verification/boundary-docket.md",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "output/missing-verification/boundary-map.json",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "output/missing-verification/gaps.md",
+              "reason": "matched `recover`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "retention": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `retention`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "install.sh",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "output/collapsed-credential/boundary-docket.md",
+              "reason": "matched `output/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "verification": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `evidence`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `check`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `check`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `assert`"
+            },
+            {
+              "path": "output/collapsed-credential/boundary-map.json",
+              "reason": "matched `evidence`"
+            },
+            {
+              "path": "output/collapsed-credential/gaps.md",
+              "reason": "matched `evidence`"
+            },
+            {
+              "path": "output/good/boundary-map.json",
+              "reason": "matched `check`"
+            },
+            {
+              "path": "output/missing-verification/boundary-map.json",
+              "reason": "matched `evidence`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        }
+      },
+      "target": "/home/seed/boundary-lifecycle-agent"
+    }
+  ],
+  "risk_counts": {
+    "critical": 1
+  },
+  "target": "/home/seed/boundary-lifecycle-agent"
+}

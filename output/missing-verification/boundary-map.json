@@ -1,0 +1,123 @@
+{
+  "file_count": 4,
+  "generated_at": "2026-05-05T00:00:00+00:00",
+  "ledger_head": "5b4e2570cb0605af642d0b832602eff9e73795d30dcd62e9c04e2abf6488380d",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [
+        {
+          "detail": "Only one weak signal found for this lifecycle stage.",
+          "severity": "thin",
+          "stage": "admission"
+        },
+        {
+          "detail": "Only one weak signal found for this lifecycle stage.",
+          "severity": "thin",
+          "stage": "authority"
+        },
+        {
+          "detail": "No durable verification boundary evidence found.",
+          "severity": "missing",
+          "stage": "verification"
+        },
+        {
+          "detail": "No durable recovery boundary evidence found.",
+          "severity": "missing",
+          "stage": "recovery"
+        }
+      ],
+      "pathway_id": "missing-verification",
+      "risk": "medium",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "context/request.txt",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "output/ledger.jsonl",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "tools/post.sh",
+              "reason": "matched `curl`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [
+            {
+              "path": "policy.md",
+              "reason": "matched `policy`"
+            }
+          ],
+          "notes": [
+            "Only one weak signal found for this lifecycle stage."
+          ],
+          "status": "thin"
+        },
+        "authority": {
+          "evidence": [
+            {
+              "path": "policy.md",
+              "reason": "matched `approval`"
+            }
+          ],
+          "notes": [
+            "Only one weak signal found for this lifecycle stage."
+          ],
+          "status": "thin"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "context/request.txt",
+              "reason": "matched `context/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [
+            {
+              "path": "output/ledger.jsonl",
+              "reason": "matched `ledger`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "recovery": {
+          "evidence": [],
+          "notes": [],
+          "status": "missing"
+        },
+        "retention": {
+          "evidence": [
+            {
+              "path": "output/ledger.jsonl",
+              "reason": "matched `output/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "verification": {
+          "evidence": [],
+          "notes": [],
+          "status": "missing"
+        }
+      },
+      "target": "/home/seed/boundary-lifecycle-agent/samples/missing-verification"
+    }
+  ],
+  "risk_counts": {
+    "medium": 1
+  },
+  "target": "/home/seed/boundary-lifecycle-agent/samples/missing-verification"
+}

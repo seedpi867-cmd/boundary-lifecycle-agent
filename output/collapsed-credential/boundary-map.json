@@ -1,0 +1,103 @@
+{
+  "file_count": 3,
+  "generated_at": "2026-05-05T00:00:00+00:00",
+  "ledger_head": "ab6d498a9a5617e2ded56e17d9542bdaf53367a61c7b8de6d618eaec5e87762e",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [
+        {
+          "detail": "No durable admission boundary evidence found.",
+          "severity": "missing",
+          "stage": "admission"
+        },
+        {
+          "detail": "Credential-like value appears inside ordinary repo text: tools/post.py",
+          "severity": "collapsed",
+          "stage": "authority"
+        },
+        {
+          "detail": "No durable verification boundary evidence found.",
+          "severity": "missing",
+          "stage": "verification"
+        },
+        {
+          "detail": "No durable recovery boundary evidence found.",
+          "severity": "missing",
+          "stage": "recovery"
+        }
+      ],
+      "pathway_id": "collapsed-credential",
+      "risk": "critical",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "tools/post.py",
+              "reason": "matched `post`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [],
+          "notes": [],
+          "status": "missing"
+        },
+        "authority": {
+          "evidence": [],
+          "notes": [
+            "Credential-like value appears inside ordinary repo text: tools/post.py"
+          ],
+          "status": "collapsed"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "context/input.txt",
+              "reason": "matched `context/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [
+            {
+              "path": "output/receipt.jsonl",
+              "reason": "matched `receipt`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "recovery": {
+          "evidence": [],
+          "notes": [],
+          "status": "missing"
+        },
+        "retention": {
+          "evidence": [
+            {
+              "path": "output/receipt.jsonl",
+              "reason": "matched `output/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "verification": {
+          "evidence": [],
+          "notes": [],
+          "status": "missing"
+        }
+      },
+      "target": "/home/seed/boundary-lifecycle-agent/samples/collapsed-credential"
+    }
+  ],
+  "risk_counts": {
+    "critical": 1
+  },
+  "target": "/home/seed/boundary-lifecycle-agent/samples/collapsed-credential"
+}
