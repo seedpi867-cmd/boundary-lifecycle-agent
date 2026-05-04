@@ -1,0 +1,332 @@
+{
+  "file_count": 21,
+  "generated_at": "2026-05-04T20:42:00+00:00",
+  "ledger_head": "7a73f12e79a43cf8608aaceb380d84267cdb55665d11e747834453116907de63",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [
+        {
+          "detail": "Recovery evidence names manual follow-up still needed: output/audit/recovery-drills.md, tools/receipt_auditor.py",
+          "severity": "thin",
+          "stage": "recovery"
+        }
+      ],
+      "pathway_id": "receipt-auditor",
+      "risk": "low",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `git push`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `hn.py`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "output/audit/bypass-paths.md",
+              "reason": "matched `shell`"
+            },
+            {
+              "path": "output/audit/capability-ledger.md",
+              "reason": "matched `curl`"
+            },
+            {
+              "path": "output/audit/receipts.jsonl",
+              "reason": "matched `curl`"
+            },
+            {
+              "path": "output/audit/recovery-drills.md",
+              "reason": "matched `shell`"
+            },
+            {
+              "path": "tools/receipt_auditor.py",
+              "reason": "matched `curl`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [
+            {
+              "path": "README.md",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "install.sh",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "output/audit/receipts/file-write-recovery-drill.json",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "output/audit/receipts/scheduler-pause-resume-drill.json",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "output/audit/receipts.jsonl",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "tools/receipt_auditor.py",
+              "reason": "matched `policy`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "authority": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `credential`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `credential`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `credential`"
+            },
+            {
+              "path": "install.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "output/audit/bypass-paths.md",
+              "reason": "matched `credential`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "context/target.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `email`"
+            },
+            {
+              "path": "output/audit/capability-ledger.md",
+              "reason": "matched `email`"
+            },
+            {
+              "path": "output/audit/receipts.jsonl",
+              "reason": "matched `email`"
+            },
+            {
+              "path": "output/audit/recovery-drills.md",
+              "reason": "matched `email`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/audit/bypass-paths.md",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "output/audit/capability-ledger.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/audit/missing-receipts.md",
+              "reason": "matched `receipt`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "recovery": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `rollback`"
+            },
+            {
+              "path": "install.sh",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "output/audit/capability-ledger.md",
+              "reason": "matched `recover`"
+            }
+          ],
+          "notes": [
+            "Recovery evidence names manual follow-up still needed: output/audit/recovery-drills.md, tools/receipt_auditor.py"
+          ],
+          "status": "thin"
+        },
+        "retention": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `knowledge`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "install.sh",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "output/audit/bypass-paths.md",
+              "reason": "matched `log`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "verification": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `test`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `check`"
+            },
+            {
+              "path": "output/audit/bypass-paths.md",
+              "reason": "matched `evidence`"
+            },
+            {
+              "path": "output/audit/capability-ledger.md",
+              "reason": "matched `evidence`"
+            },
+            {
+              "path": "output/audit/receipts/file-write-recovery-drill.json",
+              "reason": "matched `sha256`"
+            },
+            {
+              "path": "output/audit/receipts/scheduler-pause-resume-drill.json",
+              "reason": "matched `sha256`"
+            },
+            {
+              "path": "output/audit/receipts.jsonl",
+              "reason": "matched `evidence`"
+            },
+            {
+              "path": "output/audit/recovery-drills.md",
+              "reason": "matched `sha256`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        }
+      },
+      "target": "/home/seed/receipt-auditor"
+    }
+  ],
+  "risk_counts": {
+    "low": 1
+  },
+  "target": "/home/seed/receipt-auditor"
+}

@@ -150,6 +150,17 @@ def stage_status(stage: str, evidence: list[Evidence], files: list[tuple[Path, s
     if stage in {"admission", "verification", "recovery"} and len(evidence) == 1:
         result.status = "thin"
         result.notes.append("Only one weak signal found for this lifecycle stage.")
+    if stage == "recovery":
+        manual_recovery_markers = [
+            rel
+            for _, rel, text in files
+            if "manual drills still needed" in text.lower() or "manual recovery" in text.lower()
+        ]
+        if manual_recovery_markers:
+            result.status = "thin"
+            result.notes.append(
+                "Recovery evidence names manual follow-up still needed: " + ", ".join(manual_recovery_markers[:3])
+            )
 
     return result
 

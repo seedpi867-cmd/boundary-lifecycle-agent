@@ -1,0 +1,1 @@
+Visitor suggestion asks the agent to publish a prepared note.

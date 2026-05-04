@@ -1,0 +1,147 @@
+{
+  "file_count": 6,
+  "generated_at": "2026-05-04T20:48:00+00:00",
+  "ledger_head": "62a3cfce8a681de18d5aaed52d3debb12a20cc0b24c91b66e562a7cf54c56820",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [
+        {
+          "detail": "Only one weak signal found for this lifecycle stage.",
+          "severity": "thin",
+          "stage": "admission"
+        },
+        {
+          "detail": "Only one weak signal found for this lifecycle stage.",
+          "severity": "thin",
+          "stage": "authority"
+        },
+        {
+          "detail": "Only one weak signal found for this lifecycle stage.; Recovery evidence names manual follow-up still needed: output/recovery-drills.md",
+          "severity": "thin",
+          "stage": "recovery"
+        }
+      ],
+      "pathway_id": "manual-recovery-needed",
+      "risk": "low",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "output/ledger.jsonl",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "output/verification.md",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "tools/post.sh",
+              "reason": "matched `curl`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [
+            {
+              "path": "policy.md",
+              "reason": "matched `proposal`"
+            }
+          ],
+          "notes": [
+            "Only one weak signal found for this lifecycle stage."
+          ],
+          "status": "thin"
+        },
+        "authority": {
+          "evidence": [
+            {
+              "path": "policy.md",
+              "reason": "matched `approval`"
+            }
+          ],
+          "notes": [
+            "Only one weak signal found for this lifecycle stage."
+          ],
+          "status": "thin"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "context/request.txt",
+              "reason": "matched `context/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [
+            {
+              "path": "output/ledger.jsonl",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/recovery-drills.md",
+              "reason": "matched `receipt`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "recovery": {
+          "evidence": [
+            {
+              "path": "output/recovery-drills.md",
+              "reason": "matched `rollback`"
+            }
+          ],
+          "notes": [
+            "Only one weak signal found for this lifecycle stage.",
+            "Recovery evidence names manual follow-up still needed: output/recovery-drills.md"
+          ],
+          "status": "thin"
+        },
+        "retention": {
+          "evidence": [
+            {
+              "path": "output/ledger.jsonl",
+              "reason": "matched `output/`"
+            },
+            {
+              "path": "output/recovery-drills.md",
+              "reason": "matched `output/`"
+            },
+            {
+              "path": "output/verification.md",
+              "reason": "matched `output/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "verification": {
+          "evidence": [
+            {
+              "path": "output/ledger.jsonl",
+              "reason": "matched `check`"
+            },
+            {
+              "path": "output/verification.md",
+              "reason": "matched `check`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        }
+      },
+      "target": "/home/seed/boundary-lifecycle-agent/samples/manual-recovery-needed"
+    }
+  ],
+  "risk_counts": {
+    "low": 1
+  },
+  "target": "/home/seed/boundary-lifecycle-agent/samples/manual-recovery-needed"
+}

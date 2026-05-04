@@ -44,6 +44,7 @@ python3 tools/boundary_lifecycle.py /path/to/agent --out output/scan
 
 - `samples/good-lifecycle` has input, policy admission, authority, actuation, receipt, verification, recovery, and retention signals.
 - `samples/missing-verification` acts and receipts but has no independent post-action check.
+- `samples/manual-recovery-needed` has recovery evidence that explicitly names manual drills still needed, so recovery is marked thin.
 - `samples/stale-approval` contains an expired approval artifact.
 - `samples/collapsed-credential` contains a credential-like value inside ordinary tool text.
 

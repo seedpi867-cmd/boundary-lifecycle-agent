@@ -17,6 +17,7 @@ FIXTURE_NOW = dt.datetime(2026, 5, 5, tzinfo=dt.timezone.utc)
 EXPECTED_RISKS = {
     "good-lifecycle": "low",
     "missing-verification": "medium",
+    "manual-recovery-needed": "low",
     "stale-approval": "high",
     "collapsed-credential": "critical",
 }
@@ -33,6 +34,15 @@ class FixtureRiskTests(unittest.TestCase):
                 self.assertEqual(pathway["pathway_id"], fixture)
                 self.assertEqual(pathway["risk"], expected_risk)
                 self.assertEqual(result["risk_counts"], {expected_risk: 1})
+
+    def test_manual_recovery_followup_is_thin(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            result = scan(ROOT / "samples" / "manual-recovery-needed", Path(tmp), FIXTURE_NOW)
+        recovery = result["pathways"][0]["stages"]["recovery"]
+
+        self.assertEqual(result["pathways"][0]["risk"], "low")
+        self.assertEqual(recovery["status"], "thin")
+        self.assertTrue(any("manual follow-up" in note for note in recovery["notes"]))
 
 
 if __name__ == "__main__":
