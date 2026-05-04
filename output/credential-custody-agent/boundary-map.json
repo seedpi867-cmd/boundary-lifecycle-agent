@@ -1,0 +1,265 @@
+{
+  "file_count": 19,
+  "generated_at": "2026-05-04T20:45:00+00:00",
+  "ledger_head": "62590669c407bbbb57e5b05c2daa97790dd4c15ecef0c3e11d174182478360c2",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [
+        {
+          "detail": "No durable recovery boundary evidence found.",
+          "severity": "missing",
+          "stage": "recovery"
+        }
+      ],
+      "pathway_id": "credential-custody-agent",
+      "risk": "medium",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `shell`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `mastodon`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `shell`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `shell`"
+            },
+            {
+              "path": "output/credential-ledger.jsonl",
+              "reason": "matched `mastodon`"
+            },
+            {
+              "path": "output/custody-report.md",
+              "reason": "matched `shell`"
+            },
+            {
+              "path": "output/latest-decision.json",
+              "reason": "matched `shell`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "output/credential-ledger.jsonl",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "output/custody-report.md",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "output/latest-decision.json",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "samples/deny.broad-shell.json",
+              "reason": "matched `deny`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "authority": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `authority`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `authority`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "output/credential-ledger.jsonl",
+              "reason": "matched `credential`"
+            },
+            {
+              "path": "output/custody-report.md",
+              "reason": "matched `credential`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `context/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "output/credential-ledger.jsonl",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/custody-report.md",
+              "reason": "matched `hash`"
+            },
+            {
+              "path": "output/latest-decision.json",
+              "reason": "matched `hash`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "recovery": {
+          "evidence": [],
+          "notes": [],
+          "status": "missing"
+        },
+        "retention": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "install.sh",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `knowledge`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "verification": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `test`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `test`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `post-action`"
+            },
+            {
+              "path": "output/latest-decision.json",
+              "reason": "matched `test`"
+            },
+            {
+              "path": "tools/credential_custody.py",
+              "reason": "matched `verify`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        }
+      },
+      "target": "/home/seed/credential-custody-agent"
+    }
+  ],
+  "risk_counts": {
+    "medium": 1
+  },
+  "target": "/home/seed/credential-custody-agent"
+}

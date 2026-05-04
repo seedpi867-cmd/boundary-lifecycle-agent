@@ -15,7 +15,8 @@ from typing import Any
 
 TEXT_SUFFIXES = {".cfg", ".conf", ".json", ".jsonl", ".md", ".py", ".sh", ".txt", ".yml", ".yaml"}
 SKIP_DIRS = {".git", ".hg", ".svn", "__pycache__", "node_modules", ".venv", "venv"}
-SECRET_VALUE_RE = re.compile(r"(?i)(api[_-]?key|password|private[_-]?key|secret|token)\s*[:=]\s*['\"]?([A-Za-z0-9_./+=:-]{12,})")
+SECRET_VALUE_RE = re.compile(r"(?i)(api[_-]?key|password|private[_-]?key|secret|token)\s*[:=]\s*['\"]?([A-Za-z0-9_./+=:-]{8,})")
+KNOWN_SECRET_PREFIX_RE = re.compile(r"^(sk_|ghp_|xox[baprs]-|AIza)", re.IGNORECASE)
 
 STAGES = ("input", "admission", "authority", "actuation", "receipt", "verification", "recovery", "retention")
 
@@ -121,7 +122,32 @@ def detect_stale_approval(text: str, now: dt.datetime) -> bool:
 def contains_collapsed_secret(rel: str, text: str) -> bool:
     if Path(rel).name.startswith("."):
         return False
-    return bool(SECRET_VALUE_RE.search(text))
+    for match in SECRET_VALUE_RE.finditer(text):
+        value = match.group(2).strip().strip("'\"")
+        if is_likely_secret_value(value):
+            return True
+    return False
+
+
+def is_likely_secret_value(value: str) -> bool:
+    lower = value.lower()
+    if KNOWN_SECRET_PREFIX_RE.search(value):
+        return True
+    if "secret_value" in lower or "private_key" in lower:
+        return True
+    if re.fullmatch(r"[a-z][a-z0-9-]{3,32}-token", lower):
+        return False
+    if re.fullmatch(r"[a-z][a-z0-9-]{3,32}-secret", lower):
+        return False
+    classes = sum(
+        [
+            bool(re.search(r"[a-z]", value)),
+            bool(re.search(r"[A-Z]", value)),
+            bool(re.search(r"\d", value)),
+            bool(re.search(r"[+/=_:.:-]", value)),
+        ]
+    )
+    return len(value) >= 24 and classes >= 3
 
 
 def stage_status(stage: str, evidence: list[Evidence], files: list[tuple[Path, str, str]], now: dt.datetime) -> Stage:

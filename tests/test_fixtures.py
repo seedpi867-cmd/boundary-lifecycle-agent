@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.boundary_lifecycle import scan
+from tools.boundary_lifecycle import contains_collapsed_secret, scan
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -43,6 +43,16 @@ class FixtureRiskTests(unittest.TestCase):
         self.assertEqual(result["pathways"][0]["risk"], "low")
         self.assertEqual(recovery["status"], "thin")
         self.assertTrue(any("manual follow-up" in note for note in recovery["notes"]))
+
+    def test_credential_labels_are_not_secret_values(self) -> None:
+        text = "- requested_secret: github-token\n- target: github\n"
+
+        self.assertFalse(contains_collapsed_secret("output/custody-report.md", text))
+
+    def test_real_secret_shapes_still_collapse_boundary(self) -> None:
+        text = 'TOKEN = "sk_live_example_secret_value_123456"\n'
+
+        self.assertTrue(contains_collapsed_secret("tools/post.py", text))
 
 
 if __name__ == "__main__":
