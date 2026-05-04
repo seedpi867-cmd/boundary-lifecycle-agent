@@ -17,6 +17,20 @@ TEXT_SUFFIXES = {".cfg", ".conf", ".json", ".jsonl", ".md", ".py", ".sh", ".txt"
 SKIP_DIRS = {".git", ".hg", ".svn", "__pycache__", "node_modules", ".venv", "venv"}
 SECRET_VALUE_RE = re.compile(r"(?i)(api[_-]?key|password|private[_-]?key|secret|token)\s*[:=]\s*['\"]?([A-Za-z0-9_./+=:-]{8,})")
 KNOWN_SECRET_PREFIX_RE = re.compile(r"^(sk_|ghp_|xox[baprs]-|AIza)", re.IGNORECASE)
+GENERIC_APPROVAL_RE = re.compile(
+    r"(?i)\b(approval required|requires approval|human approval|manual approval|approved before|ask before|confirm before)\b"
+)
+APPROVAL_CLASS_TERMS = {
+    "impossible": ("class: impossible", "impossible", "cannot be approved", "never allow"),
+    "sandboxed-auto": ("sandboxed-auto", "sandboxed auto", "sandbox", "read-only", "dry run"),
+    "typed-policy-auto": ("typed-policy-auto", "typed policy", "policy auto", "allowlist", "threshold"),
+    "exact-call-human": ("exact-call-human", "exact call", "exact command", "per-call", "per call"),
+    "break-glass-shell": ("break-glass-shell", "break glass", "break-glass", "emergency shell"),
+    "denied": ("class: denied", "approval denied", "blocked approval", "forbidden action", "disallowed action"),
+}
+ENFORCEMENT_OWNER_RE = re.compile(
+    r"(?i)\b(enforced_by|enforcement_owner|policy_engine|approval_gateway|sandbox|wrapper|firewall|admission controller|pre[- ]execution)\b"
+)
 
 STAGES = ("input", "admission", "authority", "actuation", "receipt", "verification", "recovery", "retention")
 
@@ -119,6 +133,42 @@ def detect_stale_approval(text: str, now: dt.datetime) -> bool:
     return False
 
 
+def detect_approval_budget(files: list[tuple[Path, str, str]]) -> dict[str, Any]:
+    generic: list[str] = []
+    class_hits: dict[str, list[str]] = {name: [] for name in APPROVAL_CLASS_TERMS}
+    owner: list[str] = []
+
+    for _, rel, text in files:
+        haystack = f"{rel}\n{text}"
+        if GENERIC_APPROVAL_RE.search(haystack):
+            generic.append(rel)
+        lower = haystack.lower()
+        for class_name, terms in APPROVAL_CLASS_TERMS.items():
+            if any(term in lower for term in terms):
+                class_hits[class_name].append(rel)
+        if ENFORCEMENT_OWNER_RE.search(haystack):
+            owner.append(rel)
+
+    classes = {name: sorted(set(paths)) for name, paths in class_hits.items() if paths}
+    generic = sorted(set(generic))
+    owner = sorted(set(owner))
+    notes: list[str] = []
+
+    if generic and not classes:
+        notes.append("Generic approval language found without action-class budget: " + ", ".join(generic[:3]))
+    if classes and not owner:
+        notes.append("Approval action classes found without a named enforcement owner.")
+    if classes and owner:
+        notes.append("Approval budget names action classes and enforcement owner evidence.")
+
+    return {
+        "generic": generic,
+        "classes": classes,
+        "enforcement_owner": owner,
+        "notes": notes,
+    }
+
+
 def contains_collapsed_secret(rel: str, text: str) -> bool:
     if Path(rel).name.startswith("."):
         return False
@@ -155,12 +205,22 @@ def stage_status(stage: str, evidence: list[Evidence], files: list[tuple[Path, s
     if stage == "authority":
         stale = [rel for _, rel, text in files if detect_stale_approval(text, now)]
         collapsed = [rel for _, rel, text in files if contains_collapsed_secret(rel, text)]
-        if not evidence and not stale and not collapsed:
+        approval_budget = detect_approval_budget(files)
+        has_approval_budget = bool(approval_budget["generic"] or approval_budget["classes"] or approval_budget["enforcement_owner"])
+        if not evidence and not stale and not collapsed and not has_approval_budget:
             return result
         result.status = "ok"
         if len(evidence) == 1:
             result.status = "thin"
             result.notes.append("Only one weak signal found for this lifecycle stage.")
+        if approval_budget["generic"] and not approval_budget["classes"]:
+            result.status = max(result.status, "thin", key=lambda item: SEVERITY[item])
+            result.notes.extend(approval_budget["notes"])
+        elif approval_budget["classes"] and not approval_budget["enforcement_owner"]:
+            result.status = max(result.status, "thin", key=lambda item: SEVERITY[item])
+            result.notes.extend(approval_budget["notes"])
+        elif approval_budget["notes"]:
+            result.notes.extend(approval_budget["notes"])
         if stale:
             result.status = "stale"
             result.notes.append("Approval-like artifact appears expired: " + ", ".join(stale[:3]))

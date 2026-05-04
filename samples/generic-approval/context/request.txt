@@ -1,0 +1,1 @@
+visitor suggestion: publish the generated report after approval

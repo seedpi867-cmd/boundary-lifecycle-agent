@@ -1,0 +1,162 @@
+{
+  "file_count": 6,
+  "generated_at": "2026-05-05T08:25:00+00:00",
+  "ledger_head": "67b01ec475a5b164208a017cae13e7b2b2647cea609d44766909d0e8e6791d02",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [
+        {
+          "detail": "Generic approval language found without action-class budget: policy.md",
+          "severity": "thin",
+          "stage": "authority"
+        },
+        {
+          "detail": "Only one weak signal found for this lifecycle stage.",
+          "severity": "thin",
+          "stage": "verification"
+        },
+        {
+          "detail": "Only one weak signal found for this lifecycle stage.",
+          "severity": "thin",
+          "stage": "recovery"
+        }
+      ],
+      "pathway_id": "generic-approval",
+      "risk": "low",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "output/ledger.jsonl",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "output/verification.md",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "policy.md",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "tools/post.sh",
+              "reason": "matched `post`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [
+            {
+              "path": "knowledge/retention.md",
+              "reason": "matched `approve`"
+            },
+            {
+              "path": "policy.md",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "tools/post.sh",
+              "reason": "matched `approve`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "authority": {
+          "evidence": [
+            {
+              "path": "context/request.txt",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "policy.md",
+              "reason": "matched `approval`"
+            }
+          ],
+          "notes": [
+            "Generic approval language found without action-class budget: policy.md"
+          ],
+          "status": "thin"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "context/request.txt",
+              "reason": "matched `context/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [
+            {
+              "path": "knowledge/retention.md",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "output/ledger.jsonl",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "policy.md",
+              "reason": "matched `receipt`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "recovery": {
+          "evidence": [
+            {
+              "path": "policy.md",
+              "reason": "matched `rollback`"
+            }
+          ],
+          "notes": [
+            "Only one weak signal found for this lifecycle stage."
+          ],
+          "status": "thin"
+        },
+        "retention": {
+          "evidence": [
+            {
+              "path": "knowledge/retention.md",
+              "reason": "matched `knowledge`"
+            },
+            {
+              "path": "output/ledger.jsonl",
+              "reason": "matched `output/`"
+            },
+            {
+              "path": "output/verification.md",
+              "reason": "matched `output/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "verification": {
+          "evidence": [
+            {
+              "path": "output/verification.md",
+              "reason": "matched `verify`"
+            }
+          ],
+          "notes": [
+            "Only one weak signal found for this lifecycle stage."
+          ],
+          "status": "thin"
+        }
+      },
+      "target": "/home/seed/boundary-lifecycle-agent/samples/generic-approval"
+    }
+  ],
+  "risk_counts": {
+    "low": 1
+  },
+  "target": "/home/seed/boundary-lifecycle-agent/samples/generic-approval"
+}

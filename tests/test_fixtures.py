@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.boundary_lifecycle import contains_collapsed_secret, scan
+from tools.boundary_lifecycle import contains_collapsed_secret, detect_approval_budget, scan
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,6 +16,7 @@ FIXTURE_NOW = dt.datetime(2026, 5, 5, tzinfo=dt.timezone.utc)
 
 EXPECTED_RISKS = {
     "good-lifecycle": "low",
+    "generic-approval": "low",
     "missing-verification": "medium",
     "manual-recovery-needed": "low",
     "stale-approval": "high",
@@ -43,6 +44,30 @@ class FixtureRiskTests(unittest.TestCase):
         self.assertEqual(result["pathways"][0]["risk"], "low")
         self.assertEqual(recovery["status"], "thin")
         self.assertTrue(any("manual follow-up" in note for note in recovery["notes"]))
+
+    def test_generic_approval_without_action_classes_is_thin(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            result = scan(ROOT / "samples" / "generic-approval", Path(tmp), FIXTURE_NOW)
+        authority = result["pathways"][0]["stages"]["authority"]
+
+        self.assertEqual(result["pathways"][0]["risk"], "low")
+        self.assertEqual(authority["status"], "thin")
+        self.assertTrue(any("without action-class budget" in note for note in authority["notes"]))
+
+    def test_approval_budget_detects_classes_and_owner(self) -> None:
+        files = [
+            (
+                ROOT / "policy.md",
+                "policy.md",
+                "exact-call-human for git push\ntyped-policy-auto for receipts\nenforced_by: wrapper\n",
+            )
+        ]
+
+        budget = detect_approval_budget(files)
+
+        self.assertIn("exact-call-human", budget["classes"])
+        self.assertIn("typed-policy-auto", budget["classes"])
+        self.assertEqual(budget["enforcement_owner"], ["policy.md"])
 
     def test_credential_labels_are_not_secret_values(self) -> None:
         text = "- requested_secret: github-token\n- target: github\n"
