@@ -121,7 +121,16 @@ def has_keyword(rel: str, text: str, stage: str) -> str | None:
     return None
 
 
-def detect_stale_approval(text: str, now: dt.datetime) -> bool:
+def is_non_operational_artifact(rel: str) -> bool:
+    parts = Path(rel).parts
+    return bool(parts and parts[0] in {"samples", "sample", "fixtures", "fixture", "output"})
+
+
+def detect_stale_approval(rel: str, text: str, now: dt.datetime) -> bool:
+    if is_non_operational_artifact(rel):
+        return False
+    if Path(rel).suffix.lower() not in {".json", ".jsonl", ".yml", ".yaml", ".cfg", ".conf", ".txt"}:
+        return False
     lower = text.lower()
     if "approval" not in lower and "expires" not in lower:
         return False
@@ -203,7 +212,7 @@ def is_likely_secret_value(value: str) -> bool:
 def stage_status(stage: str, evidence: list[Evidence], files: list[tuple[Path, str, str]], now: dt.datetime) -> Stage:
     result = Stage(evidence=evidence)
     if stage == "authority":
-        stale = [rel for _, rel, text in files if detect_stale_approval(text, now)]
+        stale = [rel for _, rel, text in files if detect_stale_approval(rel, text, now)]
         collapsed = [rel for _, rel, text in files if contains_collapsed_secret(rel, text)]
         approval_budget = detect_approval_budget(files)
         has_approval_budget = bool(approval_budget["generic"] or approval_budget["classes"] or approval_budget["enforcement_owner"])

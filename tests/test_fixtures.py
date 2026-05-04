@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.boundary_lifecycle import contains_collapsed_secret, detect_approval_budget, scan
+from tools.boundary_lifecycle import contains_collapsed_secret, detect_approval_budget, detect_stale_approval, scan
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -78,6 +78,12 @@ class FixtureRiskTests(unittest.TestCase):
         text = 'TOKEN = "sk_live_example_secret_value_123456"\n'
 
         self.assertTrue(contains_collapsed_secret("tools/post.py", text))
+
+    def test_stale_approval_samples_are_not_live_authority(self) -> None:
+        text = '{"id":"example","status":"approved","expires_at":"2026-01-01T00:00:00Z"}'
+
+        self.assertFalse(detect_stale_approval("samples/approvals.json", text, FIXTURE_NOW))
+        self.assertTrue(detect_stale_approval("approvals/live.json", text, FIXTURE_NOW))
 
 
 if __name__ == "__main__":

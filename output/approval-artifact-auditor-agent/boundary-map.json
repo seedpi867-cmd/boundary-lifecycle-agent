@@ -1,0 +1,286 @@
+{
+  "file_count": 18,
+  "generated_at": "2026-05-04T23:32:00+00:00",
+  "ledger_head": "12c93e92743fe5fdde0cb7e17b573df6231f8b9d3dd6f672e43819445ee5a25a",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [],
+      "pathway_id": "approval-artifact-auditor-agent",
+      "risk": "low",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `requests.`"
+            },
+            {
+              "path": "output/approval-artifacts.jsonl",
+              "reason": "matched `shell`"
+            },
+            {
+              "path": "output/latest-summary.json",
+              "reason": "matched `shell`"
+            },
+            {
+              "path": "output/stale-approvals.md",
+              "reason": "matched `shell`"
+            },
+            {
+              "path": "samples/approvals.json",
+              "reason": "matched `shell`"
+            },
+            {
+              "path": "tools/approval_auditor.py",
+              "reason": "matched `shell`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "output/approval-artifacts.jsonl",
+              "reason": "matched `approve`"
+            },
+            {
+              "path": "output/latest-summary.json",
+              "reason": "matched `approve`"
+            },
+            {
+              "path": "output/policy-gaps.md",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "output/stale-approvals.md",
+              "reason": "matched `approve`"
+            },
+            {
+              "path": "samples/approvals.json",
+              "reason": "matched `gate`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "authority": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "output/approval-artifacts.jsonl",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "output/latest-summary.json",
+              "reason": "matched `approval`"
+            }
+          ],
+          "notes": [
+            "Approval budget names action classes and enforcement owner evidence."
+          ],
+          "status": "ok"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `context/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `hash`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/approval-artifacts.jsonl",
+              "reason": "matched `jsonl`"
+            },
+            {
+              "path": "output/latest-summary.json",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/policy-gaps.md",
+              "reason": "matched `hash`"
+            },
+            {
+              "path": "output/recovery.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/stale-approvals.md",
+              "reason": "matched `ledger`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "recovery": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `revocation`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `revocation`"
+            },
+            {
+              "path": "output/approval-artifacts.jsonl",
+              "reason": "matched `revocation`"
+            },
+            {
+              "path": "output/latest-summary.json",
+              "reason": "matched `revocation`"
+            },
+            {
+              "path": "output/policy-gaps.md",
+              "reason": "matched `revocation`"
+            },
+            {
+              "path": "output/recovery.md",
+              "reason": "matched `revocation`"
+            },
+            {
+              "path": "output/stale-approvals.md",
+              "reason": "matched `revocation`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "retention": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `knowledge`"
+            },
+            {
+              "path": "install.sh",
+              "reason": "matched `log`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "verification": {
+          "evidence": [
+            {
+              "path": "README.md",
+              "reason": "matched `test`"
+            },
+            {
+              "path": "output/approval-artifacts.jsonl",
+              "reason": "matched `sha256`"
+            },
+            {
+              "path": "output/latest-summary.json",
+              "reason": "matched `test`"
+            },
+            {
+              "path": "samples/approvals.json",
+              "reason": "matched `sha256`"
+            },
+            {
+              "path": "tools/approval_auditor.py",
+              "reason": "matched `test`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        }
+      },
+      "target": "/home/seed/approval-artifact-auditor-agent"
+    }
+  ],
+  "risk_counts": {
+    "low": 1
+  },
+  "target": "/home/seed/approval-artifact-auditor-agent"
+}
