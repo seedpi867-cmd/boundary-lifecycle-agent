@@ -1,0 +1,218 @@
+{
+  "file_count": 19,
+  "generated_at": "2026-05-05T06:35:00+00:00",
+  "ledger_head": "80b33f9e8bab756628e25ab6705b5264806d1670bde66d86383d3e73c2a18477",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [],
+      "pathway_id": "classroom-air-agent",
+      "risk": "low",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "README.md",
+              "reason": "matched `shell`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `post`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [
+            {
+              "path": "README.md",
+              "reason": "matched `admit`"
+            },
+            {
+              "path": "tools/analyze-air.py",
+              "reason": "matched `gate`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "authority": {
+          "evidence": [
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `approval`"
+            }
+          ],
+          "notes": [
+            "Approval budget names action classes and enforcement owner evidence."
+          ],
+          "status": "ok"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "context/sample-readings.csv",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `context/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "knowledge/air-ledger.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "knowledge/latest.json",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "knowledge/rooms/art-room.md",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "knowledge/rooms/room-3.md",
+              "reason": "matched `receipt`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "recovery": {
+          "evidence": [
+            {
+              "path": "README.md",
+              "reason": "matched `retract`"
+            },
+            {
+              "path": "tools/analyze-air.py",
+              "reason": "matched `retract`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "retention": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `knowledge`"
+            },
+            {
+              "path": "install.sh",
+              "reason": "matched `log`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "verification": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `evidence`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `test`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `test`"
+            },
+            {
+              "path": "knowledge/air-ledger.md",
+              "reason": "matched `verify`"
+            },
+            {
+              "path": "knowledge/latest.json",
+              "reason": "matched `verify`"
+            },
+            {
+              "path": "knowledge/rooms/art-room.md",
+              "reason": "matched `check`"
+            },
+            {
+              "path": "knowledge/rooms/room-3.md",
+              "reason": "matched `verify`"
+            },
+            {
+              "path": "output/current-actions.md",
+              "reason": "matched `verify`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        }
+      },
+      "target": "/home/seed/classroom-air-agent"
+    }
+  ],
+  "risk_counts": {
+    "low": 1
+  },
+  "target": "/home/seed/classroom-air-agent"
+}
