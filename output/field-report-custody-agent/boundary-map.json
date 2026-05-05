@@ -1,0 +1,255 @@
+{
+  "file_count": 26,
+  "generated_at": "2026-05-05T00:00:00+00:00",
+  "ledger_head": "8e272922c3c90d0cb6222994b540725ba9b1500931fd1b00b4ac7fc994c9ef79",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [
+        {
+          "detail": "No durable recovery boundary evidence found.",
+          "severity": "missing",
+          "stage": "recovery"
+        }
+      ],
+      "pathway_id": "field-report-custody-agent",
+      "risk": "medium",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `post`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [
+            {
+              "path": "README.md",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "output/custody.jsonl",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "output/docket.json",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "output/docket.md",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "policy/intended-use.yml",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "samples/reports/fr-002-policy-demoted.json",
+              "reason": "matched `policy`"
+            },
+            {
+              "path": "tools/common.py",
+              "reason": "matched `policy`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "authority": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `custody`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `custody`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `custody`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `custody`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `custody`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `credential`"
+            }
+          ],
+          "notes": [
+            "Approval budget names action classes and enforcement owner evidence."
+          ],
+          "status": "ok"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `inbox`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `inbox`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `inbox`"
+            },
+            {
+              "path": "tools/intake.py",
+              "reason": "matched `inbox`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/custody.jsonl",
+              "reason": "matched `jsonl`"
+            },
+            {
+              "path": "output/docket.json",
+              "reason": "matched `hash`"
+            },
+            {
+              "path": "output/docket.md",
+              "reason": "matched `hash`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "recovery": {
+          "evidence": [],
+          "notes": [],
+          "status": "missing"
+        },
+        "retention": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "install.sh",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "knowledge/design.md",
+              "reason": "matched `knowledge`"
+            },
+            {
+              "path": "output/custody.jsonl",
+              "reason": "matched `output/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "verification": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `verify`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `verify`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `verify`"
+            },
+            {
+              "path": "output/custody.jsonl",
+              "reason": "matched `sha256`"
+            },
+            {
+              "path": "output/docket.json",
+              "reason": "matched `sha256`"
+            },
+            {
+              "path": "output/docket.md",
+              "reason": "matched `sha256`"
+            },
+            {
+              "path": "samples/reports/fr-001-screening-good.json",
+              "reason": "matched `sha256`"
+            },
+            {
+              "path": "samples/reports/fr-002-policy-demoted.json",
+              "reason": "matched `sha256`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        }
+      },
+      "target": "/home/seed/field-report-custody-agent"
+    }
+  ],
+  "risk_counts": {
+    "medium": 1
+  },
+  "target": "/home/seed/field-report-custody-agent"
+}
