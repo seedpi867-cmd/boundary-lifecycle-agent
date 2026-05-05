@@ -1,0 +1,207 @@
+{
+  "file_count": 17,
+  "generated_at": "2026-05-05T16:35:00+00:00",
+  "ledger_head": "5868d4b764a0d9ab08377b08ec01519b3f174b234a7d5f7668514d01737c3f67",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [
+        {
+          "detail": "No durable admission boundary evidence found.",
+          "severity": "missing",
+          "stage": "admission"
+        }
+      ],
+      "pathway_id": "knowledge-editor-agent",
+      "risk": "medium",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `shell`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `post`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [],
+          "notes": [],
+          "status": "missing"
+        },
+        "authority": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `credential`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `authority`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `approval`"
+            }
+          ],
+          "notes": [
+            "Approval budget names action classes and enforcement owner evidence."
+          ],
+          "status": "ok"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `email`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `context/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/sample-audit/edit-ledger.jsonl",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "tools/knowledge_editor.py",
+              "reason": "matched `ledger`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "recovery": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `correction`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `retract`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `retract`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "retention": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `knowledge`"
+            },
+            {
+              "path": "install.sh",
+              "reason": "matched `log`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "verification": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `evidence`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `evidence`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `evidence`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `check`"
+            },
+            {
+              "path": "output/rank-index.json",
+              "reason": "matched `sha256`"
+            },
+            {
+              "path": "output/sample-audit/edit-ledger.jsonl",
+              "reason": "matched `sha256`"
+            },
+            {
+              "path": "output/sample-audit/rank-index.json",
+              "reason": "matched `sha256`"
+            },
+            {
+              "path": "tools/knowledge_editor.py",
+              "reason": "matched `sha256`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        }
+      },
+      "target": "/home/seed/knowledge-editor-agent"
+    }
+  ],
+  "risk_counts": {
+    "medium": 1
+  },
+  "target": "/home/seed/knowledge-editor-agent"
+}
