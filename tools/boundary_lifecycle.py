@@ -31,6 +31,14 @@ APPROVAL_CLASS_TERMS = {
 ENFORCEMENT_OWNER_RE = re.compile(
     r"(?i)\b(enforced_by|enforcement_owner|policy_engine|approval_gateway|sandbox|wrapper|firewall|admission controller|pre[- ]execution)\b"
 )
+KNOWLEDGE_EDITOR_PROFILE_RE = re.compile(
+    r"(?i)\b(knowledge base|knowledge corpus|markdown corpus|editorial loop|knowledge editor|editorial review)\b"
+)
+ADMISSION_BOUNDARY_RE = re.compile(
+    r"(?i)\b(admission ledger|admission receipt|intake ledger|intake receipt|admission decision|"
+    r"admit|admitted|deny|denied|reject|rejected|quarantine|quarantined|raw intake|"
+    r"source intake|accepted evidence|provenance required)\b"
+)
 
 STAGES = ("input", "admission", "authority", "actuation", "receipt", "verification", "recovery", "retention")
 
@@ -178,6 +186,34 @@ def detect_approval_budget(files: list[tuple[Path, str, str]]) -> dict[str, Any]
     }
 
 
+def detect_admission_boundary(files: list[tuple[Path, str, str]]) -> dict[str, Any]:
+    profile: list[str] = []
+    boundary: list[str] = []
+
+    for _, rel, text in files:
+        haystack = f"{rel}\n{text}"
+        if KNOWLEDGE_EDITOR_PROFILE_RE.search(haystack):
+            profile.append(rel)
+        if ADMISSION_BOUNDARY_RE.search(haystack):
+            boundary.append(rel)
+
+    profile = sorted(set(profile))
+    boundary = sorted(set(boundary))
+    notes: list[str] = []
+    if profile and not boundary:
+        notes.append(
+            "Knowledge/editor profile found without explicit intake admission, rejection, quarantine, or receipt evidence."
+        )
+    if profile and boundary:
+        notes.append("Knowledge/editor intake has explicit admission-boundary evidence.")
+
+    return {
+        "profile": profile,
+        "boundary": boundary,
+        "notes": notes,
+    }
+
+
 def contains_collapsed_secret(rel: str, text: str) -> bool:
     if Path(rel).name.startswith("."):
         return False
@@ -209,7 +245,13 @@ def is_likely_secret_value(value: str) -> bool:
     return len(value) >= 24 and classes >= 3
 
 
-def stage_status(stage: str, evidence: list[Evidence], files: list[tuple[Path, str, str]], now: dt.datetime) -> Stage:
+def stage_status(
+    stage: str,
+    evidence: list[Evidence],
+    files: list[tuple[Path, str, str]],
+    now: dt.datetime,
+    admission_boundary: dict[str, Any] | None = None,
+) -> Stage:
     result = Stage(evidence=evidence)
     if stage == "authority":
         stale = [rel for _, rel, text in files if detect_stale_approval(rel, text, now)]
@@ -238,6 +280,19 @@ def stage_status(stage: str, evidence: list[Evidence], files: list[tuple[Path, s
             result.notes.append("Credential-like value appears inside ordinary repo text: " + ", ".join(collapsed[:3]))
         return result
 
+    if stage == "admission" and admission_boundary and admission_boundary["profile"]:
+        if not admission_boundary["boundary"]:
+            result.notes.extend(admission_boundary["notes"])
+            return result
+        if not evidence:
+            result.evidence = [
+                Evidence(path, "matched knowledge/editor admission boundary")
+                for path in admission_boundary["boundary"][:8]
+            ]
+        result.status = "ok"
+        result.notes.extend(admission_boundary["notes"])
+        return result
+
     if not evidence:
         return result
 
@@ -262,13 +317,14 @@ def stage_status(stage: str, evidence: list[Evidence], files: list[tuple[Path, s
 
 def build_pathway(root: Path, files: list[tuple[Path, str, str]], now: dt.datetime) -> dict[str, Any]:
     stages: dict[str, Stage] = {}
+    admission_boundary = detect_admission_boundary(files)
     for stage in STAGES:
         evidence: list[Evidence] = []
         for _, rel, text in files:
             keyword = has_keyword(rel, text, stage)
             if keyword:
                 evidence.append(Evidence(rel, f"matched `{keyword}`"))
-        stages[stage] = stage_status(stage, evidence[:8], files, now)
+        stages[stage] = stage_status(stage, evidence[:8], files, now, admission_boundary)
 
     findings: list[dict[str, str]] = []
     for stage_name, stage in stages.items():

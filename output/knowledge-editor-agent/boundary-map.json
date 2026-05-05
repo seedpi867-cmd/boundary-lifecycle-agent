@@ -1,13 +1,13 @@
 {
   "file_count": 17,
-  "generated_at": "2026-05-05T16:35:00+00:00",
-  "ledger_head": "5868d4b764a0d9ab08377b08ec01519b3f174b234a7d5f7668514d01737c3f67",
+  "generated_at": "2026-05-05T10:10:00+00:00",
+  "ledger_head": "28e3266c367c0a7fb19c139b30f518cbd13752cf2b871058d121792e3040774d",
   "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
   "pathways": [
     {
       "findings": [
         {
-          "detail": "No durable admission boundary evidence found.",
+          "detail": "Knowledge/editor profile found without explicit intake admission, rejection, quarantine, or receipt evidence.",
           "severity": "missing",
           "stage": "admission"
         }
@@ -31,7 +31,9 @@
         },
         "admission": {
           "evidence": [],
-          "notes": [],
+          "notes": [
+            "Knowledge/editor profile found without explicit intake admission, rejection, quarantine, or receipt evidence."
+          ],
           "status": "missing"
         },
         "authority": {

@@ -8,7 +8,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.boundary_lifecycle import contains_collapsed_secret, detect_approval_budget, detect_stale_approval, scan
+from tools.boundary_lifecycle import (
+    contains_collapsed_secret,
+    detect_admission_boundary,
+    detect_approval_budget,
+    detect_stale_approval,
+    scan,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +23,7 @@ FIXTURE_NOW = dt.datetime(2026, 5, 5, tzinfo=dt.timezone.utc)
 EXPECTED_RISKS = {
     "good-lifecycle": "low",
     "generic-approval": "low",
+    "knowledge-editor-admission-boundary": "low",
     "missing-verification": "medium",
     "manual-recovery-needed": "low",
     "stale-approval": "high",
@@ -68,6 +75,35 @@ class FixtureRiskTests(unittest.TestCase):
         self.assertIn("exact-call-human", budget["classes"])
         self.assertIn("typed-policy-auto", budget["classes"])
         self.assertEqual(budget["enforcement_owner"], ["policy.md"])
+
+    def test_knowledge_editor_admission_boundary_is_detected(self) -> None:
+        files = [
+            (
+                ROOT / "README.md",
+                "README.md",
+                "Autonomous knowledge editor for a Markdown corpus.\n",
+            ),
+            (
+                ROOT / "policy.md",
+                "policy.md",
+                "Raw intake gets an admission decision: admit, reject, or quarantine.\n"
+                "Every accepted evidence item writes an intake receipt.\n",
+            ),
+        ]
+
+        boundary = detect_admission_boundary(files)
+
+        self.assertEqual(boundary["profile"], ["README.md"])
+        self.assertEqual(boundary["boundary"], ["policy.md"])
+
+    def test_knowledge_editor_without_admission_boundary_is_medium(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            result = scan(ROOT / "samples" / "knowledge-editor-no-admission", Path(tmp), FIXTURE_NOW)
+        admission = result["pathways"][0]["stages"]["admission"]
+
+        self.assertEqual(result["pathways"][0]["risk"], "medium")
+        self.assertEqual(admission["status"], "missing")
+        self.assertTrue(any("Knowledge/editor profile" in note for note in admission["notes"]))
 
     def test_credential_labels_are_not_secret_values(self) -> None:
         text = "- requested_secret: github-token\n- target: github\n"

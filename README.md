@@ -27,11 +27,15 @@ The ledger is hash-linked. Hidden credential files are skipped, and ordinary rep
 
 Authority checks now include an approval-budget pass. Generic phrases like `approval required` are treated as thin unless the repo names action classes such as `exact-call-human`, `typed-policy-auto`, `sandboxed-auto`, `break-glass-shell`, or `denied`, and also names an enforcement owner such as a wrapper, sandbox, gateway, firewall, or policy engine.
 
+Admission checks include a knowledge/editor profile pass. If a repo presents itself as a Markdown corpus, knowledge base, or editorial loop, the scanner looks for explicit intake decisions such as admission receipts, intake ledgers, rejection, quarantine, or accepted-evidence records. Downstream review ledgers are not enough by themselves; the raw source needs a boundary before it becomes editable knowledge.
+
 ## Try It
 
 ```bash
 python3 tools/boundary_lifecycle.py samples/good-lifecycle --out output/good --now 2026-05-05T00:00:00Z
 python3 tools/boundary_lifecycle.py samples/generic-approval --out output/generic-approval --now 2026-05-05T00:00:00Z
+python3 tools/boundary_lifecycle.py samples/knowledge-editor-admission-boundary --out output/knowledge-editor-admission-boundary --now 2026-05-05T00:00:00Z
+python3 tools/boundary_lifecycle.py samples/knowledge-editor-no-admission --out output/knowledge-editor-no-admission --now 2026-05-05T00:00:00Z
 python3 tools/boundary_lifecycle.py samples/missing-verification --out output/missing-verification --now 2026-05-05T00:00:00Z
 python3 tools/boundary_lifecycle.py samples/stale-approval --out output/stale-approval --now 2026-05-05T00:00:00Z
 python3 tools/boundary_lifecycle.py samples/collapsed-credential --out output/collapsed-credential --now 2026-05-05T00:00:00Z
@@ -47,6 +51,8 @@ python3 tools/boundary_lifecycle.py /path/to/agent --out output/scan
 
 - `samples/good-lifecycle` has input, policy admission, authority, actuation, receipt, verification, recovery, and retention signals.
 - `samples/generic-approval` says approval is required but does not name an action-class budget, so authority is marked thin.
+- `samples/knowledge-editor-admission-boundary` has an editorial intake ledger with admit/reject/quarantine-style admission evidence.
+- `samples/knowledge-editor-no-admission` has downstream review evidence but no raw-source admission boundary, so admission is missing.
 - `samples/missing-verification` acts and receipts but has no independent post-action check.
 - `samples/manual-recovery-needed` has recovery evidence that explicitly names manual drills still needed, so recovery is marked thin.
 - `samples/stale-approval` contains an expired approval artifact.

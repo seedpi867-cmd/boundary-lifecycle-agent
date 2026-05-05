@@ -2,4 +2,4 @@
 
 ## knowledge-editor-agent (medium)
 
-- `admission` missing: No durable admission boundary evidence found.
+- `admission` missing: Knowledge/editor profile found without explicit intake admission, rejection, quarantine, or receipt evidence.
