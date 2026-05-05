@@ -1,0 +1,302 @@
+{
+  "file_count": 14,
+  "generated_at": "2026-05-05T04:52:00+00:00",
+  "ledger_head": "d9dc9d40318e6d1a655cb0d3974bea9ebd87dae02277875104f1b6384cc4bfa7",
+  "model": "input -> admission -> authority -> actuation -> receipt -> verification -> recovery -> retention",
+  "pathways": [
+    {
+      "findings": [],
+      "pathway_id": "custody-ledger-agent",
+      "risk": "low",
+      "stages": {
+        "actuation": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `requests.`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `shell`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `post`"
+            },
+            {
+              "path": "tools/custody_ledger.py",
+              "reason": "matched `subprocess`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "admission": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `admit`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "output/custody-ledger.jsonl",
+              "reason": "matched `proposal`"
+            },
+            {
+              "path": "output/custody-report.md",
+              "reason": "matched `proposal`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "authority": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `authority`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `authority`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `authority`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `approval`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `custody`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `custody`"
+            },
+            {
+              "path": "output/custody-ledger.jsonl",
+              "reason": "matched `authority`"
+            }
+          ],
+          "notes": [
+            "Approval budget names action classes and enforcement owner evidence."
+          ],
+          "status": "ok"
+        },
+        "input": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "output/custody-ledger.jsonl",
+              "reason": "matched `context/`"
+            },
+            {
+              "path": "samples/proposal.deny.json",
+              "reason": "matched `visitor`"
+            },
+            {
+              "path": "tools/custody_ledger.py",
+              "reason": "matched `context/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "receipt": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `receipt`"
+            },
+            {
+              "path": "output/custody-ledger.jsonl",
+              "reason": "matched `ledger`"
+            },
+            {
+              "path": "output/custody-report.md",
+              "reason": "matched `hash`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "recovery": {
+          "evidence": [
+            {
+              "path": "README.md",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "output/custody-ledger.jsonl",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "output/custody-report.md",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "samples/proposal.deny.json",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "samples/proposal.safe.json",
+              "reason": "matched `recover`"
+            },
+            {
+              "path": "tools/custody_ledger.py",
+              "reason": "matched `recover`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "retention": {
+          "evidence": [
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "brain-loop.sh",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "config.sh",
+              "reason": "matched `log`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `memory`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `output/`"
+            },
+            {
+              "path": "output/custody-ledger.jsonl",
+              "reason": "matched `knowledge`"
+            },
+            {
+              "path": "output/custody-report.md",
+              "reason": "matched `output/`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        },
+        "verification": {
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "reason": "matched `evidence`"
+            },
+            {
+              "path": "INSTRUCTIONS.md",
+              "reason": "matched `verify`"
+            },
+            {
+              "path": "README.md",
+              "reason": "matched `verify`"
+            },
+            {
+              "path": "data/memory.md",
+              "reason": "matched `check`"
+            },
+            {
+              "path": "data/tasks.md",
+              "reason": "matched `post-action`"
+            },
+            {
+              "path": "output/custody-ledger.jsonl",
+              "reason": "matched `test`"
+            },
+            {
+              "path": "samples/proposal.safe.json",
+              "reason": "matched `test`"
+            },
+            {
+              "path": "tools/custody_ledger.py",
+              "reason": "matched `verify`"
+            }
+          ],
+          "notes": [],
+          "status": "ok"
+        }
+      },
+      "target": "/home/seed/custody-ledger-agent"
+    }
+  ],
+  "risk_counts": {
+    "low": 1
+  },
+  "target": "/home/seed/custody-ledger-agent"
+}
